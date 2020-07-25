@@ -16,7 +16,7 @@ function displayDogs(responseJson) {
     /* Log the JSON object from the response */
     console.log(responseJson);
     
-    /* Add each image to the DOM */
+    /* Add image to the DOM */
     message = responseJson.message;
     console.log(message);
     let type = typeof(message);
@@ -25,9 +25,15 @@ function displayDogs(responseJson) {
             $('dog-pics').removeClass('hidden');
         }
         else {
-        $('.dog-pics').replaceWith(templateDogHtml(message[0]));
+        renderDog(message[0])
         $('dog-pics').removeClass('hidden');
     }
+}
+
+function renderDog(message) {
+
+    $('.dog-pics').replaceWith(templateDogHtml(message));
+
 }
 
 function formEvent() {
