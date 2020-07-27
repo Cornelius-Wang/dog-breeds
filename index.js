@@ -2,10 +2,15 @@ let message = [];
 
 function getDogs(string) {
     fetch('https://dog.ceo/api/breed/' + string + '/images')
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
     .then(responseJson => 
         displayDogs(responseJson))
-        .catch(error => alert('Warning! Dog API call failed. Try again later.'));
+        .catch(error => alert('Try a different breed or wait a bit before submitting again'));
 }
 
 function templateDogHtml(dogUrl){
@@ -19,20 +24,15 @@ function displayDogs(responseJson) {
     /* Add image to the DOM */
     message = responseJson.message;
     console.log(message);
-    let type = typeof(message);
-        if (type === 'string') {
-            $('.dog-pics').replaceWith(message);
-            $('dog-pics').removeClass('hidden');
-        }
-        else {
-        renderDog(message[0])
-        $('dog-pics').removeClass('hidden');
-    }
+    renderDog(message[0]);
 }
 
 function renderDog(message) {
 
-    $('.dog-pics').replaceWith(templateDogHtml(message));
+    $('.error-message').empty();
+    $('.dog-pics').empty();
+    $('.dog-pics').append(templateDogHtml(message));
+    $('.dog-pics').removeClass('hidden');
 
 }
 

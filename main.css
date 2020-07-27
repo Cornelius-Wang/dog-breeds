@@ -4,7 +4,11 @@ header {
 }
 
 body {
+
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 form {
