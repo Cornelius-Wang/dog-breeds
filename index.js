@@ -1,7 +1,7 @@
 let message = [];
 
 function getDogs(string) {
-    fetch('https://dog.ceo/api/breed/' + string + '/images')
+    fetch('https://dog.ceo/api/breed/' + string + '/images/random')
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -24,7 +24,7 @@ function displayDogs(responseJson) {
     /* Add image to the DOM */
     message = responseJson.message;
     console.log(message);
-    renderDog(message[0]);
+    renderDog(message);
 }
 
 function renderDog(message) {
