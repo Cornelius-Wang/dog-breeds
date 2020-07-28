@@ -27,14 +27,13 @@ function displayDogs(responseJson) {
     renderDog(message);
 }
 
-function renderDog(message) {
+    function renderDog(message) {
+        
+        $('.dog-pics').empty();
+        $('.dog-pics').append(templateDogHtml(message));
+        $('.dog-pics').removeClass('hidden');
 
-    $('.error-message').empty();
-    $('.dog-pics').empty();
-    $('.dog-pics').append(templateDogHtml(message));
-    $('.dog-pics').removeClass('hidden');
-
-}
+    }
 
 function formEvent() {
     $('form').on('submit', function(event){
